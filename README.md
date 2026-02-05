@@ -1,6 +1,8 @@
 # Claude Code Plugin Marketplace
 
-A collection of reusable [Claude Code](https://code.claude.com) skills for everyday developer workflows. Technology-agnostic — works with any language, framework, or project.
+> Ship faster with battle-tested Claude Code skills — smart commits, deep reviews, PR automation, structured planning, and autonomous refactoring. One install, any project.
+
+A collection of 14 reusable [Claude Code](https://code.claude.com) skills organized into 3 plugins. Technology-agnostic — works with any language, framework, or project.
 
 ## Plugins
 
