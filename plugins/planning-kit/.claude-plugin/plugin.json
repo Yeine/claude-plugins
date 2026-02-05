@@ -1,0 +1,8 @@
+{
+  "name": "planning-kit",
+  "description": "Structured planning pipeline: intake, planfile, plancheck, approve, execute",
+  "version": "1.0.0",
+  "author": {
+    "name": "Yann Chabot"
+  }
+}

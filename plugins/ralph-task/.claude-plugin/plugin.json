@@ -1,0 +1,8 @@
+{
+  "name": "ralph-task",
+  "description": "Generate Ralph autonomous task files for codebase analysis",
+  "version": "1.0.0",
+  "author": {
+    "name": "Yann Chabot"
+  }
+}

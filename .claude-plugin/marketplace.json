@@ -1,0 +1,27 @@
+{
+  "name": "ychabot-plugins",
+  "owner": {
+    "name": "Yann Chabot"
+  },
+  "metadata": {
+    "description": "Developer workflow skills for Claude Code",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "dev-workflow",
+      "source": "./plugins/dev-workflow",
+      "description": "Daily dev skills: smart commits, deep reviews, PR creation, session management, quality gates, conflict resolution, and test-driven debugging"
+    },
+    {
+      "name": "planning-kit",
+      "source": "./plugins/planning-kit",
+      "description": "Structured planning pipeline: intake, planfile, plancheck, approve, execute"
+    },
+    {
+      "name": "ralph-task",
+      "source": "./plugins/ralph-task",
+      "description": "Generate Ralph autonomous task files for codebase analysis"
+    }
+  ]
+}
