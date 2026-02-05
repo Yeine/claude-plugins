@@ -83,7 +83,7 @@ ralph/
 
 Use this format:
 
-```markdown
+````markdown
 # Ralph Improvement Loop — Task List
 
 ## How This File Works
@@ -128,7 +128,7 @@ Use this format:
 | High     | X     | 0         | X         |
 | Medium   | X     | 0         | X         |
 | **Total**| **X** | **0**     | **X**     |
-```
+````
 
 **Rules for tasks:**
 - Each task must be specific and self-contained — completable in one Ralph iteration
@@ -142,7 +142,7 @@ Use this format:
 
 Use this format, filling in the `[type]` and `[verification command]` based on the project context discovered in step 2:
 
-```markdown
+````markdown
 # Ralph [Type] Loop
 
 You are an autonomous [type] agent. Your progress is tracked in `ralph/IMPROVEMENT_TASKS.md`.
@@ -184,7 +184,7 @@ REMAINING: <count> tasks
 ## EXIT
 If no unchecked tasks remain:
 **Output:** `EXIT_SIGNAL: true`
-```
+````
 
 ## 5. Present the Run Command
 
