@@ -35,7 +35,7 @@ A structured planning pipeline for complex tasks. Best used with a [safe plannin
 
 ### ralph-task
 
-Generates task files for [Ralph](https://github.com/Yeine/ralph), an autonomous AI loop that runs Claude Code repeatedly to complete multi-step improvement tasks.
+Generates task files for [Ralph](https://github.com/Yeine/ralph), an autonomous AI loop that runs Claude Code repeatedly to complete multi-step improvement tasks. Requires [Yeine/ralph](https://github.com/Yeine/ralph) to be installed.
 
 | Skill | Description |
 |-------|-------------|
