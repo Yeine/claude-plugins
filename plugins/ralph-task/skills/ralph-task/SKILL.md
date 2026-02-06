@@ -163,9 +163,19 @@ Make the changes described in the task guidance.
 Run the verification command specified in the task.
 **Output:** `TESTING: <command>`
 
-If verification fails, attempt to fix. If still failing after a reasonable effort:
-**Output:** `ATTEMPT_FAILED: <task name>`
-Then STOP. Do not move to the next task.
+If verification fails, attempt to fix. If still failing after a reasonable effort, output a failure report then STOP. Do not move to the next task.
+
+**Output:**
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ITERATION REPORT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Task:      <task name>
+Status:    FAILED
+Reason:    <brief explanation of what went wrong>
+Remaining: <count> tasks
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
 
 ## Phase 4: Mark Complete
 Edit `ralph/IMPROVEMENT_TASKS.md`:
@@ -174,11 +184,20 @@ Edit `ralph/IMPROVEMENT_TASKS.md`:
 
 **Output:** `MARKING COMPLETE: <task name>`
 
-## STOP
+## Report & STOP
+Output a brief iteration report, then stop:
+
 **Output:**
 ```
-DONE: <task name>
-REMAINING: <count> tasks
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ITERATION REPORT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Task:      <task name>
+Status:    COMPLETED
+Files:     <files modified, comma-separated>
+Summary:   <1-2 sentences: what was done and why>
+Remaining: <count> tasks
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 ## EXIT
