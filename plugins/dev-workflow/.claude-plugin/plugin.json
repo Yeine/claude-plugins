@@ -1,6 +1,6 @@
 {
   "name": "dev-workflow",
-  "description": "Daily dev skills: smart commits, deep reviews, PR creation, session management, quality gates, conflict resolution, and test-driven debugging",
+  "description": "Dev process skills: quality gates, session management, and test-driven debugging",
   "version": "1.0.0",
   "author": {
     "name": "Yann Chabot"

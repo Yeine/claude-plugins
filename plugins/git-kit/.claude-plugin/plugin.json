@@ -1,0 +1,8 @@
+{
+  "name": "git-kit",
+  "description": "Git skills: smart atomic commits and merge conflict resolution",
+  "version": "1.0.0",
+  "author": {
+    "name": "Yann Chabot"
+  }
+}

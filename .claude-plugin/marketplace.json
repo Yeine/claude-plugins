@@ -9,9 +9,19 @@
   },
   "plugins": [
     {
+      "name": "git-kit",
+      "source": "./plugins/git-kit",
+      "description": "Git skills: smart atomic commits and merge conflict resolution"
+    },
+    {
+      "name": "pr-kit",
+      "source": "./plugins/pr-kit",
+      "description": "Pull request skills: PR creation, deep code reviews, and review feedback handling — powered by GitHub CLI"
+    },
+    {
       "name": "dev-workflow",
       "source": "./plugins/dev-workflow",
-      "description": "Daily dev skills: smart commits, deep reviews, PR creation, session management, quality gates, conflict resolution, and test-driven debugging"
+      "description": "Dev process skills: quality gates, session management, and test-driven debugging"
     },
     {
       "name": "planning-kit",
@@ -22,6 +32,16 @@
       "name": "ralph-task",
       "source": "./plugins/ralph-task",
       "description": "Generate Ralph autonomous task files for codebase analysis"
+    },
+    {
+      "name": "browser-kit",
+      "source": "./plugins/browser-kit",
+      "description": "Browser automation skills: E2E test generation, accessibility audits, visual regression testing, browser debugging, page generation, and design review — powered by Playwright"
+    },
+    {
+      "name": "seo-kit",
+      "source": "./plugins/seo-kit",
+      "description": "SEO skills: full audits, meta tag generation, structured data (JSON-LD), and broken link detection — powered by Playwright"
     }
   ]
 }
