@@ -1,0 +1,8 @@
+{
+  "name": "browser-kit",
+  "description": "Browser automation skills: E2E test generation, accessibility audits, visual regression testing, browser debugging, page generation, and design review — powered by Playwright",
+  "version": "1.0.0",
+  "author": {
+    "name": "Yann Chabot"
+  }
+}

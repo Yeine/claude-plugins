@@ -1,0 +1,8 @@
+{
+  "name": "seo-kit",
+  "description": "SEO skills: full audits, meta tag generation, structured data (JSON-LD), and broken link detection — powered by Playwright",
+  "version": "1.0.0",
+  "author": {
+    "name": "Yann Chabot"
+  }
+}

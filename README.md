@@ -2,23 +2,37 @@
 
 > Ship faster with battle-tested Claude Code skills — smart commits, deep reviews, PR automation, structured planning, and autonomous refactoring. One install, any project.
 
-A collection of 14 reusable [Claude Code](https://code.claude.com) skills organized into 3 plugins. Technology-agnostic — works with any language, framework, or project.
+A collection of 26 reusable [Claude Code](https://code.claude.com) skills organized into 7 plugins. Technology-agnostic — works with any language, framework, or project.
 
 ## Plugins
 
-### dev-workflow
+### git-kit
 
-Daily development skills for commits, reviews, PRs, and quality checks.
+Pure local git operations — no GitHub API needed.
 
 | Skill | Description |
 |-------|-------------|
 | `smart-commit` | Atomic conventional commits — analyzes diffs, splits by domain, presents a plan before committing. Flags: `--quick`, `--push` |
+| `resolve-conflicts` | Walks through merge conflicts file by file with targeted edits and verification |
+
+### pr-kit
+
+Pull request skills powered by GitHub CLI.
+
+| Skill | Description |
+|-------|-------------|
+| `pr` | Creates a PR with auto-generated title and description from commits and diffs. Flags: `--draft`, `--review` |
 | `deep-review` | Rigorous code review of the current branch. Scales sub-agents by diff size. Produces a structured report with severity levels |
 | `review-feedback` | Fetches unresolved PR review threads (any reviewer), analyzes them, optionally fixes + commits + replies + resolves. Flag: `--author=` |
+
+### dev-workflow
+
+Dev process and methodology skills.
+
+| Skill | Description |
+|-------|-------------|
 | `session` | Sets up a working branch and starts the dev environment in seconds. Infers branch prefix from first word (`fix`, `feat`, `refactor`...) |
-| `pr` | Creates a PR with auto-generated title and description from commits and diffs. Flags: `--draft`, `--review` |
 | `quality-gate` | Discovers and runs all project quality tools (linter, static analysis, tests) in order. Flags: `--fix`, `--changed` |
-| `resolve-conflicts` | Walks through merge conflicts file by file with targeted edits and verification |
 | `test-debug` | Test-driven bug fixing: trace root cause, write failing test, check impact, fix, validate |
 
 ### planning-kit
@@ -41,6 +55,32 @@ Generates task files for [Ralph](https://github.com/Yeine/ralph), an autonomous 
 |-------|-------------|
 | `ralph-task` | Analyzes the codebase and generates prioritized task files. Categories: `security`, `test-coverage`, `code-quality`, `architecture`, `tech-debt`, `custom` |
 
+### browser-kit
+
+Browser automation skills powered by Playwright — E2E testing, accessibility, visual regression, debugging, and UI design.
+
+| Skill | Description |
+|-------|-------------|
+| `e2e-gen` | Generate Playwright E2E tests from plain-English flow descriptions. Navigates the running app, discovers selectors, validates the test |
+| `a11y-audit` | Accessibility audit using axe-core with WCAG compliance. Traces violations to source files. Flags: `--fix`, `--standard` |
+| `browser-debug` | Investigate browser bugs: captures console errors, network failures, JS exceptions, screenshots. Traces root cause to source. Flag: `--trace` |
+| `visual-regression` | Screenshot diff testing against stored baselines. Reports visual changes with source file tracing. Flags: `--update`, `--threshold`, `--mobile` |
+| `page-gen` | Generate page components from plain-English descriptions using the project's existing stack and design system. Flag: `--route` |
+| `screenshot-to-code` | Reverse-engineer a mockup/screenshot into working code using existing project components. Flag: `--route` |
+| `design-review` | UI critique: spacing inconsistencies, alignment issues, typography problems, design system violations at desktop and mobile viewports. Flag: `--fix` |
+| `clone-page` | Recreate a page from a public URL using the project's own components, palette, and conventions. Flag: `--route` |
+
+### seo-kit
+
+SEO analysis and generation skills powered by Playwright — audits, meta tags, structured data, and link checking.
+
+| Skill | Description |
+|-------|-------------|
+| `seo-audit` | Full SEO audit: meta tags, headings, images, Open Graph, canonical, robots, structured data. Scores pages out of 100. Flags: `--fix`, `--full-crawl` |
+| `meta-gen` | Generate optimized title, description, OG, and Twitter Card tags from actual page content. Framework-aware (Next.js, React Helmet, Vue, Svelte). Flag: `--dry-run` |
+| `structured-data` | Add or validate JSON-LD structured data. Auto-detects schema type (Article, Product, FAQ, HowTo, etc.) from content. Flags: `--validate`, `--type` |
+| `link-check` | Crawl the site for broken links, redirect chains, orphan pages, and bad anchor text. Flags: `--external`, `--depth`, `--fix` |
+
 ## Installation
 
 ```bash
@@ -48,9 +88,13 @@ Generates task files for [Ralph](https://github.com/Yeine/ralph), an autonomous 
 /plugin marketplace add Yeine/claude-plugins
 
 # Install the plugins you want
+/plugin install git-kit@ychabot-plugins
+/plugin install pr-kit@ychabot-plugins
 /plugin install dev-workflow@ychabot-plugins
 /plugin install planning-kit@ychabot-plugins
 /plugin install ralph-task@ychabot-plugins
+/plugin install browser-kit@ychabot-plugins
+/plugin install seo-kit@ychabot-plugins
 ```
 
 ## Usage
@@ -58,13 +102,19 @@ Generates task files for [Ralph](https://github.com/Yeine/ralph), an autonomous 
 After installation, skills are namespaced by plugin:
 
 ```bash
+# Git kit
+/git-kit:smart-commit --quick
+/git-kit:resolve-conflicts
+
+# PR kit
+/pr-kit:pr --draft
+/pr-kit:deep-review develop
+/pr-kit:review-feedback --author=coderabbitai
+
 # Dev workflow
-/dev-workflow:smart-commit --quick
-/dev-workflow:deep-review develop
 /dev-workflow:session fix broken login page
-/dev-workflow:pr --draft
 /dev-workflow:quality-gate --fix
-/dev-workflow:review-feedback --author=coderabbitai
+/dev-workflow:test-debug users can't log in after password reset
 
 # Planning pipeline
 /planning-kit:intake add rate limiting to public API
@@ -75,6 +125,22 @@ After installation, skills are namespaced by plugin:
 
 # Ralph tasks
 /ralph-task:ralph-task security
+
+# Browser kit
+/browser-kit:e2e-gen user logs in and sees the dashboard
+/browser-kit:a11y-audit /login /dashboard --fix
+/browser-kit:browser-debug clicking submit shows a blank page
+/browser-kit:visual-regression --update
+/browser-kit:page-gen a settings page with sidebar and profile form
+/browser-kit:screenshot-to-code ./designs/mockup.png
+/browser-kit:design-review /login /dashboard
+/browser-kit:clone-page https://example.com/pricing --route /pricing
+
+# SEO kit
+/seo-kit:seo-audit /pricing /blog --fix
+/seo-kit:meta-gen /pricing /about --dry-run
+/seo-kit:structured-data /blog/my-post
+/seo-kit:link-check --external --depth 5
 ```
 
 ## Safe Planning Mode
