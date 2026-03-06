@@ -60,7 +60,7 @@ If no design system is found, use general UI best practices as the baseline.
 
 For each target route, write and execute a Playwright script that:
 
-1. Captures a screenshot at **desktop** (1280x720) viewport
+1. Create the browser context with `storageState: '.browser-auth-state.json'` if that file exists in the project root (loads saved session). Capture a screenshot at **desktop** (1280x720) viewport
 2. Captures a screenshot at **mobile** (375x812) viewport
 3. Extracts computed styles for key elements:
    - All headings (tag, font-size, font-weight, margin, color)
@@ -194,3 +194,4 @@ Remove temporary scripts and captured screenshots.
 - Do not modify files unless `--fix` was specified
 - Do not fix subjective issues automatically — only objective ones
 - If the dev server is not running, say so — do not start it automatically
+- If the page redirects to a login page or returns 401/403, stop and suggest: `Run /browser-kit:browser-auth first to save an authenticated session.`

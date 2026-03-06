@@ -49,31 +49,33 @@ If nothing responds:
 
 Write and execute a Playwright script that:
 
-1. **Sets up listeners** before navigation:
+1. **Loads auth state** — if `.browser-auth-state.json` exists in the project root, create the browser context with `storageState: '.browser-auth-state.json'`
+
+2. **Sets up listeners** before navigation:
    - `page.on('console')` — capture all console messages, flag errors
    - `page.on('pageerror')` — capture unhandled JS exceptions with stack traces
    - `page.on('requestfailed')` — capture failed network requests with error text
    - `page.on('response')` — capture all responses with status codes and timing
 
-2. **Optionally enables tracing** (if `--trace`):
+3. **Optionally enables tracing** (if `--trace`):
    - `context.tracing.start({ screenshots: true, snapshots: true, sources: true })`
 
-3. **Navigates to the target URL** with `{ waitUntil: 'networkidle', timeout: 30000 }`
+4. **Navigates to the target URL** with `{ waitUntil: 'networkidle', timeout: 30000 }`
 
-4. **Takes an initial screenshot** (baseline state)
+5. **Takes an initial screenshot** (baseline state)
 
-5. **Executes reproduction steps** based on the bug description:
+6. **Executes reproduction steps** based on the bug description:
    - If "clicking X" → find and click element X
    - If "form submission" → fill the form and submit
    - If "hover" → hover over the element
    - If "scroll" → scroll to the relevant section
    - If "page load" → already captured, focus on timing
 
-6. **Takes a post-action screenshot**
+7. **Takes a post-action screenshot**
 
-7. **Saves the trace** (if `--trace`): `context.tracing.stop({ path: '.tmp-debug-trace.zip' })`
+8. **Saves the trace** (if `--trace`): `context.tracing.stop({ path: '.tmp-debug-trace.zip' })`
 
-8. **Outputs all diagnostics** as JSON
+9. **Outputs all diagnostics** as JSON
 
 Read the screenshots to visually confirm the bug.
 
@@ -193,3 +195,4 @@ Remove temporary scripts, screenshots, and trace files.
 - Check for similar patterns in the codebase after finding a bug — the same mistake may exist elsewhere
 - If the dev server is not running, say so — do not start it automatically
 - Clean up all temporary files
+- If the page redirects to a login page or returns 401/403, stop and suggest: `Run /browser-kit:browser-auth first to save an authenticated session.`

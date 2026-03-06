@@ -56,7 +56,7 @@ If nothing responds:
 
 Write and execute a script that, for each target URL:
 
-1. Navigates to the page with `{ waitUntil: 'networkidle' }`
+1. Create the browser context with `storageState: '.browser-auth-state.json'` if that file exists in the project root (loads saved session). Navigate to the page with `{ waitUntil: 'networkidle' }`
 2. Creates an `AxeBuilder` instance with the appropriate WCAG tags:
    - `wcag2a` → `['wcag2a']`
    - `wcag2aa` → `['wcag2a', 'wcag2aa']`
@@ -159,3 +159,4 @@ Remove temporary scripts and screenshots.
 - If `--fix` is not set, do not modify any files
 - Always report what passed, not just what failed — gives confidence in coverage
 - Be specific: "3 images missing alt on /login" not "images need alt text"
+- If the page redirects to a login page or returns 401/403, stop and suggest: `Run /browser-kit:browser-auth first to save an authenticated session.`

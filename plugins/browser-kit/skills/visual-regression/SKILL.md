@@ -72,7 +72,7 @@ If no routes are provided:
 
 Write and execute a Playwright script that for each route:
 
-1. Sets the viewport to the specified dimensions
+1. Create the browser context with `storageState: '.browser-auth-state.json'` if that file exists in the project root (loads saved session). Set the viewport to the specified dimensions
 2. Navigates with `{ waitUntil: 'networkidle' }`
 3. Waits 500ms for animations/transitions to settle
 4. Hides dynamic content that causes false positives: elements with `[data-visual-regression-ignore]` are set to `visibility: hidden`
@@ -194,3 +194,4 @@ Remove temporary scripts.
 - Suggest gitignoring the diffs directory but NOT the baselines directory
 - If Playwright's built-in `toHaveScreenshot` is already configured, prefer it over custom comparison
 - If the dev server is not running, say so — do not start it automatically
+- If the page redirects to a login page or returns 401/403, stop and suggest: `Run /browser-kit:browser-auth first to save an authenticated session.`

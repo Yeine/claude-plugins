@@ -67,7 +67,7 @@ If no existing tests exist, use Playwright best practices as defaults: `@playwri
 Write and execute a temporary exploration script to capture the actual DOM state at each step of the flow.
 
 The script should:
-1. Launch a headless browser and navigate to the target URL
+1. Launch a headless browser. If `.browser-auth-state.json` exists in the project root, create the browser context with `storageState: '.browser-auth-state.json'` to load the saved session. Navigate to the target URL
 2. Capture the accessibility tree (`page.accessibility.snapshot()`)
 3. Capture all interactive elements (buttons, links, inputs, selects, textareas, elements with `role`, `data-testid`)
 4. Take a full-page screenshot
@@ -145,3 +145,4 @@ Run: `npx playwright test path/to/test.spec.ts`
 - Do not leave temporary files behind
 - If the dev server is not running, say so — do not attempt to start it automatically
 - Include meaningful assertions, not just navigation checks
+- If the page redirects to a login page or returns 401/403, stop and suggest: `Run /browser-kit:browser-auth first to save an authenticated session.`

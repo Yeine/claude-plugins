@@ -90,7 +90,7 @@ Same as `page-gen` — find the router config, add the route, follow existing pa
 
 If a dev server is running:
 
-1. Navigate to the page with Playwright
+1. Launch Playwright. Load auth state from `.browser-auth-state.json` if it exists. Navigate to the page
 2. Take a full-page screenshot of the generated page
 3. Read both the original mockup and the generated screenshot
 4. Compare them visually:
@@ -140,3 +140,4 @@ Ask:
 - If the mockup contains text, use it as placeholder data — do not replace with "Lorem ipsum"
 - If `--route` is not specified, do not modify the router
 - Do not start the dev server automatically
+- If the page redirects to a login page or returns 401/403, stop and suggest: `Run /browser-kit:browser-auth first to save an authenticated session.`

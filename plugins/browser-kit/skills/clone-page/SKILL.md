@@ -102,7 +102,7 @@ If `--route` is specified:
 
 If a dev server is running for the project:
 
-1. Navigate to the generated page with Playwright
+1. Launch Playwright. Load auth state from `.browser-auth-state.json` if it exists. Navigate to the generated page
 2. Take a full-page screenshot at desktop and mobile
 3. Read all screenshots: original source (desktop + mobile) and generated (desktop + mobile)
 4. Compare:
@@ -152,4 +152,5 @@ Ask:
 - Do not include external assets (images, fonts) from the source — use placeholders or project assets
 - If `--route` is not specified, do not modify the router
 - Do not start the dev server automatically
+- If the page redirects to a login page or returns 401/403 when verifying the generated page, stop and suggest: `Run /browser-kit:browser-auth first to save an authenticated session.`
 - Respect copyright — this skill recreates the design pattern, not the content. Use placeholder text for marketing copy.

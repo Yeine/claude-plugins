@@ -2,7 +2,7 @@
 
 > Ship faster with battle-tested Claude Code skills — smart commits, deep reviews, PR automation, structured planning, and autonomous refactoring. One install, any project.
 
-A collection of 26 reusable [Claude Code](https://code.claude.com) skills organized into 7 plugins. Technology-agnostic — works with any language, framework, or project.
+A collection of 30 reusable [Claude Code](https://code.claude.com) skills organized into 7 plugins. Technology-agnostic — works with any language, framework, or project.
 
 ## Plugins
 
@@ -45,7 +45,9 @@ A structured planning pipeline for complex tasks. Best used with a [safe plannin
 | `planfile` | Creates a versioned implementation plan with steps, verification commands, risks, and rollback |
 | `plancheck` | Reviews a plan like a senior engineer — assigns P0/P1/P2 issues and auto-fixes what it can |
 | `approve` | Validates completeness and freezes the plan for execution |
-| `execute` | Executes an approved plan step by step, verifying each before proceeding. Flags: `--step N`, `--continue` |
+| `execute` | Executes an approved plan step by step, verifying each before proceeding. Flags: `--step N`, `--continue`, `--polish` |
+| `postmortem` | Post-execution review — architecture drift, tech debt, test gaps, and lessons learned. Optionally saves to `.claude/knowledge/` |
+| `docs-update` | Updates changelog, README, API docs, and migration notes to reflect a completed plan's changes |
 
 ### ralph-task
 
@@ -61,6 +63,7 @@ Browser automation skills powered by Playwright — E2E testing, accessibility, 
 
 | Skill | Description |
 |-------|-------------|
+| `browser-auth` | Authenticate once and save the session for all browser-kit skills. Interactive (SSO, MFA) or config-based. Flags: `--interactive`, `--reset` |
 | `e2e-gen` | Generate Playwright E2E tests from plain-English flow descriptions. Navigates the running app, discovers selectors, validates the test |
 | `a11y-audit` | Accessibility audit using axe-core with WCAG compliance. Traces violations to source files. Flags: `--fix`, `--standard` |
 | `browser-debug` | Investigate browser bugs: captures console errors, network failures, JS exceptions, screenshots. Traces root cause to source. Flag: `--trace` |
@@ -122,11 +125,15 @@ After installation, skills are namespaced by plugin:
 /planning-kit:plancheck api-rate-limit
 /planning-kit:approve api-rate-limit
 /planning-kit:execute api-rate-limit
+/planning-kit:postmortem api-rate-limit
+/planning-kit:docs-update api-rate-limit
 
 # Ralph tasks
 /ralph-task:ralph-task security
 
-# Browser kit
+# Browser kit (authenticate first for intranet/protected apps)
+/browser-kit:browser-auth                    # interactive login — SSO, MFA, anything
+/browser-kit:browser-auth --reset            # re-authenticate when session expires
 /browser-kit:e2e-gen user logs in and sees the dashboard
 /browser-kit:a11y-audit /login /dashboard --fix
 /browser-kit:browser-debug clicking submit shows a blank page

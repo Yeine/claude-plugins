@@ -95,7 +95,7 @@ If no `--route` flag, skip this step — just create the component.
 
 Determine the app URL (same URL discovery as other skills). If a dev server is running:
 
-1. Write a Playwright script to navigate to the page
+1. Write a Playwright script. Load auth state from `.browser-auth-state.json` if it exists. Navigate to the page
 2. Take a full-page screenshot
 3. Read the screenshot and present it to the user
 
@@ -124,3 +124,4 @@ If the user requests changes, apply them and re-verify.
 - If `--route` is not specified, do not modify the router
 - Do not start the dev server automatically
 - If existing page patterns use data fetching (hooks, loaders), include appropriate data fetching in the generated page with placeholder implementations
+- If the page redirects to a login page or returns 401/403, stop and suggest: `Run /browser-kit:browser-auth first to save an authenticated session.`
